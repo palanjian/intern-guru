@@ -1,5 +1,5 @@
 import { auth, googleProvider } from '../config/firebase'
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,13 +17,6 @@ const Signin = () => {
         catch(err){ console.error(err) }
     }
 
-    const logOut = async () => {
-        try{
-            await signOut(auth)
-            console.log(auth.currentUser)
-        }
-        catch(err) { console.log(err) }       
-    }
 
     return(
         <div>
@@ -37,7 +30,6 @@ const Signin = () => {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={signIn}>Sign in</button>
-            <button onClick={logOut}>Sign out</button>
         </div>
     )
 }

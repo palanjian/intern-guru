@@ -22,6 +22,8 @@ const Register = () => {
                     email: user.email,
                     firstName: fName,
                     lastName: lName,
+                    interests: [],
+                    completed: []
                 })
             }
             console.log("User registered successfully")

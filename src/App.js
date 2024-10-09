@@ -5,14 +5,17 @@ import NoPage from "./pages/NoPage"
 import Login from "./pages/Login"
 import { useState, useEffect } from 'react';
 import {auth} from './config/firebase'
+import './index.css'
 
 function App() {
   const [user, setUser] = useState()
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user)
-    }, [])
-  })
+    const unsubscribe = auth.onAuthStateChanged((u) => {
+        console.log("User state changed: ", u);
+        setUser(u);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div >

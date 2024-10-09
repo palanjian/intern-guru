@@ -1,11 +1,11 @@
 import { auth, db } from '../config/firebase'
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import { getDoc, doc } from 'firebase/firestore'
-
+import Signout from '../components/Signout'
+import CardHolder from '../components/CardHolder'
 function Portal(){
     const [userDetails, setUserDetails] = useState(null)
-
+    
     const fetchUserData = async () => {
         auth.onAuthStateChanged(async (user) => {
             const docRef = doc(db, "Users", user.uid)
@@ -23,10 +23,14 @@ function Portal(){
         fetchUserData()
     }, [])
     
-    return(
-        <div>{userDetails ?
-            <h1>Welcome back {userDetails.firstName}</h1> : 
-            <h1>Loading...</h1>}
+    return(        
+        <div>
+            <Signout />{userDetails ?
+            <>
+                <h1>Welcome back {userDetails.firstName}</h1>
+                <CardHolder details={userDetails}/>
+            </>
+            :  <h1>Loading...</h1> }
         </div>
     )
 }
