@@ -8,7 +8,7 @@ function Portal(){
     
     const fetchUserData = async () => {
         auth.onAuthStateChanged(async (user) => {
-            const docRef = doc(db, "Users", user.uid)
+            const docRef = doc(db, "users", user.uid)
             const docSnap = await getDoc(docRef)
             if(docSnap.exists()){
                 setUserDetails(docSnap.data())

@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   return (
-    <div >
+    <div>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
